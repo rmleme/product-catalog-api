@@ -7,7 +7,7 @@ import static org.mockito.Mockito.when;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Before;
@@ -59,7 +59,7 @@ public class ShoeControllerTest {
 
 	@Test
 	public void retrieveAllOk() throws Exception {
-		List<Shoe> shoes = Arrays.asList(new Shoe[] { shoe });
+		List<Shoe> shoes = Collections.singletonList(shoe);
 		when(mockShoeService.retrieveAll()).thenReturn(shoes);
 
 		assertEquals(ResponseEntity.ok(shoes), controller.retrieveAll());

@@ -1,0 +1,165 @@
+swagger: '2.0'
+info:
+  description: API Documentation
+  version: '1.1'
+  title: Product Catalog API Documentation
+  termsOfService: 'https://www.becommerce.com.br/'
+  contact: {email: 'rmleme@gmail.com'}
+host: 'localhost:8080'
+basePath: /v1/api
+tags:
+  - name: shoe
+    description: Product Catalog (Shoes)
+paths:
+  /shoes:
+    get:
+      tags:
+        - shoe
+      summary: Retrieves all catalogued shoes
+      operationId: retrieveAll
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/IdentifiedShoe'
+        '204':
+          description: No Content
+      deprecated: false
+    post:
+      tags:
+        - shoe
+      summary: Adds a new shoe to the product catalog
+      operationId: create
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: shoe
+          description: Shoe object that needs to be added to the product catalog
+          required: true
+          schema:
+            $ref: '#/definitions/Shoe'
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              type: string
+              description: URL of the created shoe
+      deprecated: false
+  '/shoes/{id}':
+    get:
+      tags:
+        - shoe
+      summary: Retrieves shoe by ID
+      operationId: retrieve
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: ID of a shoe to return
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/IdentifiedShoe'
+        '404':
+          description: Not Found
+      deprecated: false
+    put:
+      tags:
+        - shoe
+      summary: Updates an existing shoe
+      operationId: update
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: ID of a shoe that needs to be updated
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: shoe
+          description: Shoe object that needs to be updated in the product catalog
+          required: true
+          schema:
+            $ref: '#/definitions/Shoe'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/IdentifiedShoe'
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - shoe
+      summary: Deletes a shoe
+      operationId: delete
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: ID of a shoe that needs to be deleted
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+      deprecated: false
+definitions:
+  Shoe:
+    type: object
+    required:
+      - size
+      - brand_name
+      - price
+      - color
+    properties:
+      size:
+        type: integer
+        format: int32
+        minimum: 10
+        maximum: 50
+      brand_name:
+        type: string
+        maxLength: 32
+      price:
+        type: number
+        format: double
+        minimum: 0
+      color:
+        type: string
+        enum:
+          - BLACK
+          - BROWN
+          - WHITE
+    title: Shoe
+  IdentifiedShoe:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+    allOf:
+      - $ref: '#/definitions/Shoe'
+    title: Shoe

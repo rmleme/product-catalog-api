@@ -1,1 +1,1 @@
-docker build --tag becommerce-product-catalog-api:1.0 .
+docker build --tag becommerce-product-catalog-api:1.1 .

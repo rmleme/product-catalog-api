@@ -10,7 +10,7 @@ public interface ShoeService {
 
 	Shoe retrieve(long id);
 
-	Shoe create(Shoe Shoe);
+	Shoe create(Shoe shoe);
 
 	Shoe update(Shoe shoe);
 

@@ -1,5 +1,10 @@
 package br.com.becommerce.product.catalog.api.shoe.controller;
 
+import static br.com.becommerce.product.catalog.api.shoe.model.Constants.BRAND_NAME;
+import static br.com.becommerce.product.catalog.api.shoe.model.Constants.COLOR;
+import static br.com.becommerce.product.catalog.api.shoe.model.Constants.PRICE;
+import static br.com.becommerce.product.catalog.api.shoe.model.Constants.SIZE;
+import static br.com.becommerce.product.catalog.api.shoe.model.Constants.URI;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.apache.commons.lang3.StringUtils;
@@ -17,23 +22,12 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.becommerce.product.catalog.api.shoe.model.Color;
 import br.com.becommerce.product.catalog.api.shoe.model.Shoe;
 import br.com.becommerce.product.catalog.api.shoe.service.ShoeService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(ShoeController.class)
 public class ShoeControllerValidationTest {
-
-	private static final int SIZE = 40;
-
-	private static final String BRAND_NAME = "brandName";
-
-	private static final double PRICE = 1;
-
-	private static final Color COLOR = Color.BLACK;
-
-	private static final String URI = "/v1/api/shoes";
 
 	private Shoe shoe;
 
@@ -65,19 +59,13 @@ public class ShoeControllerValidationTest {
 	}
 
 	@Test
-	public void createSizeNull() throws Exception {
-		String serializedShoe = "{ \"brand_name\": \"Democrata\", \"price\": 199.9, \"color\": \"BLACK\" }";
-		mockMvc.perform(builder.content(serializedShoe)).andExpect(status().isBadRequest());
-	}
-
-	@Test
 	public void createSizeLessThanMinimal() throws Exception {
 		shoe.setSize(9);
 		mockMvc.perform(builder.content(objectMapper.writeValueAsString(shoe))).andExpect(status().isBadRequest());
 	}
 
 	@Test
-	public void createSizeHigherThanMaximum() throws Exception {
+	public void createSizeGreaterThanMaximum() throws Exception {
 		shoe.setSize(51);
 		mockMvc.perform(builder.content(objectMapper.writeValueAsString(shoe))).andExpect(status().isBadRequest());
 	}
@@ -101,15 +89,9 @@ public class ShoeControllerValidationTest {
 	}
 
 	@Test
-	public void createBrandNameHigherThanMaximum() throws Exception {
+	public void createBrandNameGreaterThanMaximum() throws Exception {
 		shoe.setBrandName(StringUtils.repeat('a', 33));
 		mockMvc.perform(builder.content(objectMapper.writeValueAsString(shoe))).andExpect(status().isBadRequest());
-	}
-
-	@Test
-	public void createPriceNull() throws Exception {
-		String serializedShoe = "{ \"brand_name\": \"Democrata\", \"color\": \"BLACK\" }";
-		mockMvc.perform(builder.content(serializedShoe)).andExpect(status().isBadRequest());
 	}
 
 	@Test

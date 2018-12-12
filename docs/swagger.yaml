@@ -6,7 +6,7 @@ info:
   termsOfService: 'https://www.becommerce.com.br/'
   contact: {email: 'rmleme@gmail.com'}
 host: 'localhost:8080'
-basePath: /v1/api
+basePath: /v1/api/catalog
 tags:
   - name: shoe
     description: Product Catalog (Shoes)
@@ -156,6 +156,8 @@ definitions:
     title: Shoe
   IdentifiedShoe:
     type: object
+    required:
+      - id
     properties:
       id:
         type: integer

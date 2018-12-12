@@ -18,7 +18,6 @@ public class Shoe {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@NotNull
 	@Min(10)
 	@Max(50)
 	private int size;
@@ -27,7 +26,6 @@ public class Shoe {
 	@Size(max = 32)
 	private String brandName;
 
-	@NotNull
 	@PositiveOrZero
 	private double price;
 

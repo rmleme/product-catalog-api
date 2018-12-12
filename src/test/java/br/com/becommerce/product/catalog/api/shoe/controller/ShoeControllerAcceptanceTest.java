@@ -1,5 +1,10 @@
 package br.com.becommerce.product.catalog.api.shoe.controller;
 
+import static br.com.becommerce.product.catalog.api.shoe.model.Constants.BRAND_NAME;
+import static br.com.becommerce.product.catalog.api.shoe.model.Constants.COLOR;
+import static br.com.becommerce.product.catalog.api.shoe.model.Constants.PRICE;
+import static br.com.becommerce.product.catalog.api.shoe.model.Constants.SIZE;
+import static br.com.becommerce.product.catalog.api.shoe.model.Constants.URI;
 import static org.junit.Assert.assertEquals;
 
 import java.net.URI;
@@ -31,7 +36,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.becommerce.product.catalog.api.Application;
-import br.com.becommerce.product.catalog.api.shoe.model.Color;
 import br.com.becommerce.product.catalog.api.shoe.model.Shoe;
 
 @RunWith(SpringRunner.class)
@@ -41,16 +45,6 @@ public class ShoeControllerAcceptanceTest {
 
 	@ClassRule
 	public static MySQLContainer mysql = new MySQLContainer();
-
-	private static final int SIZE = 40;
-
-	private static final String BRAND_NAME = "brandName";
-
-	private static final double PRICE = 1;
-
-	private static final Color COLOR = Color.BLACK;
-
-	private static final String URI = "/v1/api/shoes";
 
 	private Shoe shoe;
 

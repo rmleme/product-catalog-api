@@ -1,5 +1,11 @@
 package br.com.becommerce.product.catalog.api.shoe.controller;
 
+import static br.com.becommerce.product.catalog.api.shoe.model.Constants.BRAND_NAME;
+import static br.com.becommerce.product.catalog.api.shoe.model.Constants.COLOR;
+import static br.com.becommerce.product.catalog.api.shoe.model.Constants.ID;
+import static br.com.becommerce.product.catalog.api.shoe.model.Constants.PRICE;
+import static br.com.becommerce.product.catalog.api.shoe.model.Constants.SIZE;
+import static br.com.becommerce.product.catalog.api.shoe.model.Constants.URI;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -19,25 +25,12 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.becommerce.product.catalog.api.shoe.model.Color;
 import br.com.becommerce.product.catalog.api.shoe.model.Shoe;
 import br.com.becommerce.product.catalog.api.shoe.model.ShoeTest;
 import br.com.becommerce.product.catalog.api.shoe.service.ShoeService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ShoeControllerTest {
-
-	private static final long ID = 1;
-
-	private static final int SIZE = 40;
-
-	private static final String BRAND_NAME = "brandName";
-
-	private static final double PRICE = 1;
-
-	private static final Color COLOR = Color.BLACK;
-
-	private static final String URI = "/v1/api/shoes";
 
 	private Shoe shoe;
 

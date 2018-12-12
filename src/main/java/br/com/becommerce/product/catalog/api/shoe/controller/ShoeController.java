@@ -20,7 +20,7 @@ import br.com.becommerce.product.catalog.api.shoe.model.Shoe;
 import br.com.becommerce.product.catalog.api.shoe.service.ShoeService;
 
 @RestController
-@RequestMapping("/v1/api/shoes")
+@RequestMapping("/v1/api/catalog/shoes")
 public class ShoeController {
 
 	@Autowired
@@ -47,7 +47,7 @@ public class ShoeController {
 	@PostMapping
 	public ResponseEntity<Shoe> create(@Valid @RequestBody Shoe shoe, UriComponentsBuilder ucBuilder) {
 		shoeService.create(shoe);
-		return ResponseEntity.created(ucBuilder.path("/v1/api/shoes/{id}").buildAndExpand(shoe.getId()).toUri())
+		return ResponseEntity.created(ucBuilder.path("/v1/api/catalog/shoes/{id}").buildAndExpand(shoe.getId()).toUri())
 				.build();
 	}
 

@@ -9,5 +9,5 @@
 3. Copy the generated file (`api-1.1.jar`) to `docker/build/`
 4. Run `build.sh`. A new Docker image will be created.
 5. Go to directory `docker/` and run `docker-compose up -d`
-6. Two containers will be started, one for MySQL and the other for the application.
-7. Once both containers are ready, the APIs may be accessed through the base URL `http://<IP>:8080/v1/api/shoes`
+6. Three containers will be started: one for MySQL, another for this application and the third for [Inventory Manager API](https://github.com/rmleme/inventory-manager-api).
+7. Once all containers are ready, the APIs may be accessed through the base URL `http://<IP>:8080/v1/api/catalog/shoes`
